@@ -144,7 +144,7 @@ impl Client {
     fn build_headers(&self, content_type: bool) -> Result<HeaderMap> {
         let mut custom_headers = HeaderMap::new();
 
-        custom_headers.insert(USER_AGENT, HeaderValue::from_static("binance-rs"));
+        custom_headers.insert(USER_AGENT, HeaderValue::from_static("exchange-rs"));
         if content_type {
             custom_headers.insert(
                 CONTENT_TYPE,

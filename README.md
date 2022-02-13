@@ -1,10 +1,10 @@
-# binance-rs
+# exchange-rs
 
 Unofficial Rust Library for the [Binance API](https://github.com/binance/binance-spot-api-docs) and [Binance Futures API (Under development with upcoming breaking changes)](https://binance-docs.github.io/apidocs/futures/en/#general-info)
 
 [![Crates.io](https://img.shields.io/crates/v/binance.svg)](https://crates.io/crates/binance)
-[![Build Status](https://travis-ci.org/wisespace-io/binance-rs.png?branch=master)](https://travis-ci.org/wisespace-io/binance-rs)
-[![CI](https://github.com/wisespace-io/binance-rs/workflows/Rust/badge.svg)](https://github.com/wisespace-io/binance-rs/actions?query=workflow%3ARust)
+[![Build Status](https://travis-ci.org/tqtensor/exchange-rs.png?branch=master)](https://travis-ci.org/tqtensor/exchange-rs)
+[![CI](https://github.com/tqtensor/exchange-rs/workflows/Rust/badge.svg)](https://github.com/tqtensor/exchange-rs/actions?query=workflow%3ARust)
 [![MIT licensed](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE-MIT)
 [![Apache-2.0 licensed](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE-APACHE)
 
@@ -12,7 +12,7 @@ Unofficial Rust Library for the [Binance API](https://github.com/binance/binance
 
 ## Binance API Telegram
 
-  <https://t.me/binance_api_english>
+<https://t.me/binance_api_english>
 
 ## Risk Warning
 
@@ -25,7 +25,7 @@ Add this to your Cargo.toml
 
 ```toml
 [dependencies]
-binance = { git = "https://github.com/wisespace-io/binance-rs.git" }
+binance = { git = "https://github.com/tqtensor/exchange-rs.git" }
 ```
 
 ## Rust >= 1.41
@@ -34,7 +34,8 @@ binance = { git = "https://github.com/wisespace-io/binance-rs.git" }
 rustup install stable
 ```
 
-### Table of Contents  
+### Table of Contents
+
 - [MARKET DATA](#market-data)
 - [ACCOUNT DATA](#account-data)
 - [ERROR HANDLING](#error-handling)
@@ -111,7 +112,7 @@ fn main() {
 
     // last 10 5min klines (candlesticks) for a symbol:
     match market.get_klines("BNBETH", "5m", 10, None, None) {
-        Ok(klines) => {   
+        Ok(klines) => {
             match klines {
                 binance::model::KlineSummaries::AllKlineSummaries(klines) => {
                     let kline: KlineSummary = klines[0].clone(); // You need to iterate over the klines
@@ -380,7 +381,7 @@ fn main() {
         };
         Ok(())
     });
- 
+
     web_socket.connect(&kline).unwrap(); // check error
     if let Err(e) = web_socket.event_loop(&keep_running) {
         match e {
@@ -428,4 +429,4 @@ fn main() {
 
 ### Other Exchanges
 
-If you use [Bitfinex](https://www.bitfinex.com/) check out my [Rust library for bitfinex API](https://github.com/wisespace-io/bitfinex-rs)
+If you use [Bitfinex](https://www.bitfinex.com/) check out my [Rust library for bitfinex API](https://github.com/tqtensor/bitfinex-rs)
