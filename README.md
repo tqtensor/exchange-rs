@@ -50,11 +50,11 @@ rustup install stable
 ### MARKET DATA
 
 ```rust
-use binance::api::*;
-use binance::market::*;
+use exchange::api::*;
+use exchange::market::*;
 
 fn main() {
-    let market: Market = Binance::new(None, None);
+    let market: Market = Exchange::new(None, None);
 
     // Order book at default depth
     match market.get_depth("BNBETH") {
@@ -114,7 +114,7 @@ fn main() {
     match market.get_klines("BNBETH", "5m", 10, None, None) {
         Ok(klines) => {
             match klines {
-                binance::model::KlineSummaries::AllKlineSummaries(klines) => {
+                exchange::model::KlineSummaries::AllKlineSummaries(klines) => {
                     let kline: KlineSummary = klines[0].clone(); // You need to iterate over the klines
                     println!(
                         "Open: {}, High: {}, Low: {}",
@@ -131,14 +131,14 @@ fn main() {
 ### ACCOUNT DATA
 
 ```rust
-use binance::api::*;
-use binance::account::*;
+use exchange::api::*;
+use exchange::account::*;
 
 fn main() {
     let api_key = Some("YOUR_API_KEY".into());
     let secret_key = Some("YOUR_SECRET_KEY".into());
 
-    let account: Account = Binance::new(api_key, secret_key);
+    let account: Account = Exchange::new(api_key, secret_key);
 
     match account.get_account() {
         Ok(answer) => println!("{:?}", answer.balances),
@@ -210,7 +210,7 @@ Provides more detailed error information
 You can check out the [Binance Error Codes](https://github.com/binance-exchange/binance-official-api-docs/blob/master/errors.md)
 
 ```rust
-use binance::errors::ErrorKind as BinanceLibErrorKind;
+use exchange::errors::ErrorKind as BinanceLibErrorKind;
 
 [...]
 
@@ -245,21 +245,21 @@ let general: General = if use_testnet {
                                   // .set_ws_endpoint("wss://testnet.binance.vision/ws")
                                   // .set_futures_rest_api_endpoint("https://testnet.binancefuture.com/api")
                                   // .set_futures_ws_endpoint("https://testnet.binancefuture.com/ws")
-    Binance::new_with_config(None, None, &config)
+    Exchange::new_with_config(None, None, &config)
 } else {
-    Binance::new(None, None)
+    Exchange::new(None, None)
 };
 ```
 
 ### USER STREAM CONFIGURATION
 
 ```rust
-use binance::api::*;
-use binance::userstream::*;
+use exchange::api::*;
+use exchange::userstream::*;
 
 fn main() {
     let api_key_user = Some("YOUR_API_KEY".into());
-    let user_stream: UserStream = Binance::new(api_key_user.clone(), None);
+    let user_stream: UserStream = Exchange::new(api_key_user.clone(), None);
 
     if let Ok(answer) = user_stream.start() {
         println!("Data Stream Started ...");
@@ -283,15 +283,15 @@ fn main() {
 #### USER STREAM
 
 ```rust
-use binance::api::*;
-use binance::userstream::*;
-use binance::websockets::*;
+use exchange::api::*;
+use exchange::userstream::*;
+use exchange::websockets::*;
 use std::sync::atomic::{AtomicBool};
 
 fn main() {
     let api_key_user = Some("YOUR_KEY".into());
     let keep_running = AtomicBool::new(true); // Used to control the event loop
-    let user_stream: UserStream = Binance::new(api_key_user, None);
+    let user_stream: UserStream = Exchange::new(api_key_user, None);
 
     if let Ok(answer) = user_stream.start() {
 	let listen_key = answer.listen_key;
@@ -328,7 +328,7 @@ fn main() {
 #### TRADES
 
 ```rust
-use binance::websockets::*;
+use exchange::websockets::*;
 use std::sync::atomic::{AtomicBool};
 
 fn main() {
@@ -366,7 +366,7 @@ fn main() {
 #### KLINE
 
 ```rust
-use binance::websockets::*;
+use exchange::websockets::*;
 use std::sync::atomic::{AtomicBool};
 
 fn main() {
@@ -398,7 +398,7 @@ fn main() {
 #### MULTIPLE STREAMS
 
 ```rust
-use binance::websockets::*;
+use exchange::websockets::*;
 use std::sync::atomic::{AtomicBool};
 
 fn main() {

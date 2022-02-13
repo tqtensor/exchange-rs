@@ -1,11 +1,11 @@
-use binance::api::*;
-use binance::savings::*;
-use binance::config::*;
-use binance::general::*;
-use binance::account::*;
-use binance::market::*;
-use binance::model::KlineSummary;
-use binance::errors::ErrorKind as BinanceLibErrorKind;
+use exchange::api::*;
+use exchange::savings::*;
+use exchange::config::*;
+use exchange::general::*;
+use exchange::account::*;
+use exchange::market::*;
+use exchange::model::KlineSummary;
+use exchange::errors::ErrorKind as BinanceLibErrorKind;
 
 fn main() {
     // The general spot API endpoints; shown with
@@ -25,9 +25,9 @@ fn main() {
 fn general(use_testnet: bool) {
     let general: General = if use_testnet {
         let config = Config::default().set_rest_api_endpoint("https://testnet.binance.vision");
-        Binance::new_with_config(None, None, &config)
+        Exchange::new_with_config(None, None, &config)
     } else {
-        Binance::new(None, None)
+        Exchange::new(None, None)
     };
 
     let ping = general.ping();
@@ -69,7 +69,7 @@ fn account() {
     let api_key = Some("YOUR_API_KEY".into());
     let secret_key = Some("YOUR_SECRET_KEY".into());
 
-    let account: Account = Binance::new(api_key, secret_key);
+    let account: Account = Exchange::new(api_key, secret_key);
 
     match account.get_account() {
         Ok(answer) => println!("{:?}", answer.balances),
@@ -138,7 +138,7 @@ fn savings() {
     let api_key = Some("YOUR_API_KEY".into());
     let api_secret = Some("YOUR_SECRET_KEY".into());
 
-    let savings: Savings = Binance::new(api_key, api_secret);
+    let savings: Savings = Exchange::new(api_key, api_secret);
 
     match savings.get_all_coins() {
         Ok(answer) => println!("{:#?}", answer),
@@ -158,7 +158,7 @@ fn savings() {
 
 #[allow(dead_code)]
 fn market_data() {
-    let market: Market = Binance::new(None, None);
+    let market: Market = Exchange::new(None, None);
 
     // Order book at default depth
     match market.get_depth("BNBETH") {
@@ -231,7 +231,7 @@ fn market_data() {
     match market.get_klines("BNBETH", "5m", 10, None, None) {
         Ok(klines) => {
             match klines {
-                binance::model::KlineSummaries::AllKlineSummaries(klines) => {
+                exchange::model::KlineSummaries::AllKlineSummaries(klines) => {
                     let kline: KlineSummary = klines[0].clone(); // You need to iterate over the klines
                     println!(
                         "Open: {}, High: {}, Low: {}",

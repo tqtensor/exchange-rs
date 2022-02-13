@@ -162,14 +162,14 @@ impl From<API> for String {
     }
 }
 
-pub trait Binance {
+pub trait Exchange {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> Self;
     fn new_with_config(
         api_key: Option<String>, secret_key: Option<String>, config: &Config,
     ) -> Self;
 }
 
-impl Binance for General {
+impl Exchange for General {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> General {
         Self::new_with_config(api_key, secret_key, &Config::default())
     }
@@ -183,7 +183,7 @@ impl Binance for General {
     }
 }
 
-impl Binance for Account {
+impl Exchange for Account {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> Account {
         Self::new_with_config(api_key, secret_key, &Config::default())
     }
@@ -198,7 +198,7 @@ impl Binance for Account {
     }
 }
 
-impl Binance for Savings {
+impl Exchange for Savings {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> Self {
         Self::new_with_config(api_key, secret_key, &Config::default())
     }
@@ -213,7 +213,7 @@ impl Binance for Savings {
     }
 }
 
-impl Binance for Market {
+impl Exchange for Market {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> Market {
         Self::new_with_config(api_key, secret_key, &Config::default())
     }
@@ -228,7 +228,7 @@ impl Binance for Market {
     }
 }
 
-impl Binance for UserStream {
+impl Exchange for UserStream {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> UserStream {
         Self::new_with_config(api_key, secret_key, &Config::default())
     }
@@ -247,7 +247,7 @@ impl Binance for UserStream {
 //              Binance Futures API
 // *****************************************************
 
-impl Binance for FuturesGeneral {
+impl Exchange for FuturesGeneral {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> FuturesGeneral {
         Self::new_with_config(api_key, secret_key, &Config::default())
     }
@@ -265,7 +265,7 @@ impl Binance for FuturesGeneral {
     }
 }
 
-impl Binance for FuturesMarket {
+impl Exchange for FuturesMarket {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> FuturesMarket {
         Self::new_with_config(api_key, secret_key, &Config::default())
     }
@@ -284,7 +284,7 @@ impl Binance for FuturesMarket {
     }
 }
 
-impl Binance for FuturesAccount {
+impl Exchange for FuturesAccount {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> Self {
         Self::new_with_config(api_key, secret_key, &Config::default())
     }
@@ -303,7 +303,7 @@ impl Binance for FuturesAccount {
     }
 }
 
-impl Binance for FuturesUserStream {
+impl Exchange for FuturesUserStream {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> FuturesUserStream {
         Self::new_with_config(api_key, secret_key, &Config::default())
     }

@@ -1,5 +1,5 @@
-use binance::api::*;
-use binance::futures::userstream::*;
+use exchange::api::*;
+use exchange::futures::userstream::*;
 
 fn main() {
     user_stream();
@@ -7,7 +7,7 @@ fn main() {
 
 fn user_stream() {
     let api_key_user = Some("YOUR_API_KEY".into());
-    let user_stream: FuturesUserStream = Binance::new(api_key_user, None);
+    let user_stream: FuturesUserStream = Exchange::new(api_key_user, None);
 
     if let Ok(answer) = user_stream.start() {
         println!("Data Stream Started ...");

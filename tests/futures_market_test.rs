@@ -1,7 +1,7 @@
-use binance::api::*;
-use binance::config::*;
-use binance::futures::market::FuturesMarket;
-use binance::futures::model::OpenInterestHist;
+use exchange::api::*;
+use exchange::config::*;
+use exchange::futures::market::FuturesMarket;
+use exchange::futures::model::OpenInterestHist;
 
 #[cfg(test)]
 mod tests {
@@ -17,7 +17,7 @@ mod tests {
             .create();
 
         let config = Config::default().set_futures_rest_api_endpoint(mockito::server_url());
-        let market: FuturesMarket = Binance::new_with_config(None, None, &config);
+        let market: FuturesMarket = Exchange::new_with_config(None, None, &config);
 
         let open_interest_hists = market
             .open_interest_statistics("BTCUSDT", "5m", 10, None, None)

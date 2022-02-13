@@ -1,4 +1,4 @@
-use binance::futures::websockets::*;
+use exchange::futures::websockets::*;
 use std::sync::atomic::{AtomicBool, Ordering};
 
 fn main() {

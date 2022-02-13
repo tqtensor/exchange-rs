@@ -456,13 +456,13 @@ impl Account {
     /// Returning a `Transaction` value with the same parameters sent on the order.
     ///
     ///```no_run
-    /// use binance::api::Binance;
-    /// use binance::account::*;
+    /// use exchange::api::Binance;
+    /// use exchange::account::*;
     ///
     /// fn main() {
     ///     let api_key = Some("api_key".into());
     ///     let secret_key = Some("secret_key".into());
-    ///     let account: Account = Binance::new(api_key, secret_key);
+    ///     let account: Account = Exchange::new(api_key, secret_key);
     ///     let result = account.stop_limit_buy_order("LTCBTC", 1, 0.1, 0.09, TimeInForce::GTC);
     /// }
     /// ```
@@ -494,13 +494,13 @@ impl Account {
     /// This order is sandboxed: it is validated, but not sent to the matching engine.
     ///
     ///```no_run
-    /// use binance::api::Binance;
-    /// use binance::account::*;
+    /// use exchange::api::Binance;
+    /// use exchange::account::*;
     ///
     /// fn main() {
     ///     let api_key = Some("api_key".into());
     ///     let secret_key = Some("secret_key".into());
-    ///     let account: Account = Binance::new(api_key, secret_key);
+    ///     let account: Account = Exchange::new(api_key, secret_key);
     ///     let result = account.test_stop_limit_buy_order("LTCBTC", 1, 0.1, 0.09, TimeInForce::GTC);
     /// }
     /// ```
@@ -532,13 +532,13 @@ impl Account {
     /// Returning a `Transaction` value with the same parameters sent on the order.
     ///
     ///```no_run
-    /// use binance::api::Binance;
-    /// use binance::account::*;
+    /// use exchange::api::Binance;
+    /// use exchange::account::*;
     ///
     /// fn main() {
     ///     let api_key = Some("api_key".into());
     ///     let secret_key = Some("secret_key".into());
-    ///     let account: Account = Binance::new(api_key, secret_key);
+    ///     let account: Account = Exchange::new(api_key, secret_key);
     ///     let result = account.stop_limit_sell_order("LTCBTC", 1, 0.1, 0.09, TimeInForce::GTC);
     /// }
     /// ```
@@ -570,13 +570,13 @@ impl Account {
     /// This order is sandboxed: it is validated, but not sent to the matching engine.
     ///
     ///```no_run
-    /// use binance::api::Binance;
-    /// use binance::account::*;
+    /// use exchange::api::Binance;
+    /// use exchange::account::*;
     ///
     /// fn main() {
     ///     let api_key = Some("api_key".into());
     ///     let secret_key = Some("secret_key".into());
-    ///     let account: Account = Binance::new(api_key, secret_key);
+    ///     let account: Account = Exchange::new(api_key, secret_key);
     ///     let result = account.test_stop_limit_sell_order("LTCBTC", 1, 0.1, 0.09, TimeInForce::GTC);
     /// }
     /// ```
